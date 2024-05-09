@@ -1,6 +1,39 @@
 import React from "react";
+import type { GetStaticProps } from "next";
 
-const ProductPage: React.FC = () => {
+type Product = {
+  id: number;
+  name: string;
+  power: string;
+  description: string;
+  price: number;
+  quantity: number;
+  brand: string;
+  weight: number;
+  height: number;
+  width: number;
+  length: number;
+  model_code: string;
+  colour: string;
+  img_url: string;
+};
+
+type ProductPageData = {
+  products: Product[];
+};
+
+export const getStaticProps: GetStaticProps<ProductPageData> = async () => {
+  const { products } = require("../../server/db");
+  return {
+    props: {
+      products,
+    },
+  };
+};
+
+const ProductPage = ({ products }: ProductPageData) => {
+  const lightbulb = products[0];
+
   return (
     <div>
       <nav>
@@ -20,13 +53,16 @@ const ProductPage: React.FC = () => {
         <section>
           <img
             style={{ maxWidth: "100%" }}
-            src="philips-plumen.jpg"
-            alt="Product Image"
+            src={lightbulb.img_url}
+            alt={`Image of the product: ${lightbulb.name}`}
           />
           <div>
-            <h1>Product Name</h1>
-            <p>Important info</p>
-            <strong>£1.99</strong>
+            <h1>{lightbulb.name}</h1>
+            <p>
+              <span>{lightbulb.power}</span>
+              <span> Packet of {lightbulb.quantity}</span>
+            </p>
+            <strong>£{lightbulb.price / 100}</strong>
             <h2>Qty</h2>
             <div>
               <button type="button" aria-label="Decrease Quantity">
@@ -45,18 +81,32 @@ const ProductPage: React.FC = () => {
         <section>
           <div>
             <h2>Description</h2>
-            <p>Item description</p>
+            <p>{lightbulb.description}</p>
           </div>
           <div>
             <h2>Specifications</h2>
             <dl>
               <div>
                 <dt>Brand</dt>
-                <dd>Phillips</dd>
+                <dd>{lightbulb.brand}</dd>
               </div>
               <div>
                 <dt>Item weight (g)</dt>
-                <dd>77</dd>
+                <dd>{lightbulb.weight}</dd>
+              </div>
+              <div>
+                <dt>Dimensions (cm)</dt>
+                <dd>
+                  {lightbulb.height} x {lightbulb.width} x {lightbulb.length}
+                </dd>
+              </div>
+              <div>
+                <dt>Item Model number</dt>
+                <dd>{lightbulb.model_code}</dd>
+              </div>
+              <div>
+                <dt>Colour</dt>
+                <dd>{lightbulb.colour}</dd>
               </div>
             </dl>
           </div>
