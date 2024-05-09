@@ -3,13 +3,24 @@ import React from "react";
 const ProductPage: React.FC = () => {
   return (
     <div>
-      <nav> {/* nav content */}</nav>
+      <nav>
+        <img
+          style={{ maxWidth: "50%" }}
+          src="octopus-logo.svg"
+          alt="The Octopus logo"
+        />
+        <img
+          style={{ maxWidth: "5%" }}
+          src="basket.svg"
+          alt="An icon of a basket"
+        />
+      </nav>
       <main>
         {/* product details */}
         <section>
           <img
             style={{ maxWidth: "100%" }}
-            src="/philips-plumen.jpg"
+            src="philips-plumen.jpg"
             alt="Product Image"
           />
           <div>
@@ -52,7 +63,16 @@ const ProductPage: React.FC = () => {
         </section>
       </main>
 
-      <footer>{/* footer content */}</footer>
+      <footer>
+        <small>
+          Octopus Energy Ltd is a company registered in England and Wales.
+          Registered number: 09263424.
+          <address>
+            Registered office: 33 Holborn, London, ECIN 2HT. Trading office:
+            20-24 Broadwick Street, London, WIF 8HT
+          </address>
+        </small>
+      </footer>
     </div>
   );
 };
