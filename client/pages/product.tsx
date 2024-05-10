@@ -37,7 +37,7 @@ const ProductImage = styled.img`
 
 const ProductHeading = styled.h1`
   margin: 0.5em 0 0.3em;
-  font-weight: normal;
+  font-weight: 400;
   font-size: 30px;
 `;
 
@@ -45,7 +45,53 @@ const ProductImportantDetails = styled.p`
   margin-top: 0;
   font-size: 14px;
   color: ${(props) => props.theme.colours.purpleHaze};
+  
 }
+`;
+
+const PriceAndQuantityWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px 0;
+`;
+
+const Price = styled.strong`
+  font-weight: 500;
+  font-size: 20px;
+`;
+
+const QuantityWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const QuantityLabel = styled.span`
+  font-size: 9px;
+  font-weight: 200;
+`;
+
+const QuantitySelector = styled.div`
+  display: flex;
+  padding: 6px;
+  align-items: center;
+`;
+
+const CurrentQuantity = styled.div`
+  margin: 0 6px;
+  font-weight: 500;
+  font-size: 20px;
+`;
+
+const QuantityButton = styled.button`
+  color: ${(props) => props.theme.colours.plum};
+  background: ${(props) => props.theme.colours.sohoLights};
+  border: none;
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  border-radius: 11px;
 `;
 
 type ProductData = {
@@ -107,27 +153,31 @@ const Product = ({ products }: ProductData) => {
               <span> // </span>
               <span>Packet of {lightbulb.quantity}</span>
             </ProductImportantDetails>
-            <strong>£{lightbulb.price / 100}</strong>
-            <h2>Qty</h2>
-            <div aria-label="Quantity selector">
-              <button
-                type="button"
-                aria-label="Decrease Quantity"
-                onClick={decreaseQuantity}
-              >
-                -
-              </button>
-              <span role="status" title="Current quantity">
-                {quantity}
-              </span>
-              <button
-                type="button"
-                aria-label="Increase Quantity"
-                onClick={increaseQuantity}
-              >
-                +
-              </button>
-            </div>
+            <PriceAndQuantityWrapper>
+              <Price>£{lightbulb.price / 100}</Price>
+              <QuantityWrapper>
+                <QuantityLabel>Qty</QuantityLabel>
+                <QuantitySelector aria-label="Quantity selector">
+                  <QuantityButton
+                    type="button"
+                    aria-label="Decrease Quantity"
+                    onClick={decreaseQuantity}
+                  >
+                    -
+                  </QuantityButton>
+                  <CurrentQuantity role="status" title="Current quantity">
+                    {quantity}
+                  </CurrentQuantity>
+                  <QuantityButton
+                    type="button"
+                    aria-label="Increase Quantity"
+                    onClick={increaseQuantity}
+                  >
+                    +
+                  </QuantityButton>
+                </QuantitySelector>
+              </QuantityWrapper>
+            </PriceAndQuantityWrapper>
             <button onClick={addToBasket} title="Add to cart">
               Add to cart
             </button>
