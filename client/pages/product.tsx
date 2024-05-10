@@ -5,7 +5,7 @@ import { ProductType } from "../types";
 import { styled } from "styled-components";
 
 const Nav = styled.nav`
-  padding: 10px;
+  padding: 16px;
   display: flex;
   justify-content: space-between;
 `;
@@ -24,6 +24,15 @@ const BasketWrapper = styled.div`
 const BasketIcon = styled.img`
   margin: 0 5px;
   height: 20px;
+`;
+
+const Main = styled.main`
+  padding: 16px;
+`;
+
+const ProductImage = styled.img`
+  max-width: 100%;
+  border-radius: 25px;
 `;
 
 type ProductData = {
@@ -71,13 +80,12 @@ const Product = ({ products }: ProductData) => {
           <BasketIcon src="basket.svg" alt="An icon of a basket" />
         </BasketWrapper>
       </Nav>
-      <main>
+      <Main>
         {/* product details */}
         <section>
-          <img
-            style={{ maxWidth: "100%" }}
+          <ProductImage
             src={lightbulb.img_url}
-            alt={`Image of the product: ${lightbulb.name}`}
+            alt={`Image of the following product: ${lightbulb.name}`}
           />
           <div>
             <h1>{lightbulb.name}</h1>
@@ -147,7 +155,7 @@ const Product = ({ products }: ProductData) => {
             </dl>
           </div>
         </section>
-      </main>
+      </Main>
 
       <footer>
         <small>
