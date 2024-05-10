@@ -10,6 +10,10 @@ const GlobalStyle = createGlobalStyle`
       color: ${(props) => props.theme.colours.ice};
     }
 
+    button {
+      font-family: ${(props) => props.theme.fontFamily};
+    }
+
     body {
       background: ${(props) => props.theme.colours.siphon};
     }

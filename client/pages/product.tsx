@@ -79,19 +79,27 @@ const QuantitySelector = styled.div`
 `;
 
 const CurrentQuantity = styled.div`
-  margin: 0 6px;
+  margin: 0 8px;
   font-weight: 500;
   font-size: 20px;
 `;
 
-const QuantityButton = styled.button`
-  color: ${(props) => props.theme.colours.plum};
+const BaseButton = styled.button`
+  color: ${(props) => props.theme.colours.hemocyanin};
   background: ${(props) => props.theme.colours.sohoLights};
   border: none;
-  width: 30px;
-  height: 30px;
   font-size: 16px;
   border-radius: 11px;
+`;
+
+const QuantityButton = styled(BaseButton)`
+  width: 30px;
+  height: 30px;
+`;
+
+const AddToCartButton = styled(BaseButton)`
+  width: 100%;
+  height: 56px;
 `;
 
 type ProductData = {
@@ -178,9 +186,9 @@ const Product = ({ products }: ProductData) => {
                 </QuantitySelector>
               </QuantityWrapper>
             </PriceAndQuantityWrapper>
-            <button onClick={addToBasket} title="Add to cart">
+            <AddToCartButton onClick={addToBasket} title="Add to cart">
               Add to cart
-            </button>
+            </AddToCartButton>
           </div>
         </section>
 
