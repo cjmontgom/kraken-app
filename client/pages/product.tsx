@@ -18,11 +18,11 @@ type Product = {
   img_url: string;
 };
 
-type ProductPageData = {
+type ProductData = {
   products: Product[];
 };
 
-export const getStaticProps: GetStaticProps<ProductPageData> = async () => {
+export const getStaticProps: GetStaticProps<ProductData> = async () => {
   const { products } = require("../../server/db");
   return {
     props: {
@@ -31,7 +31,7 @@ export const getStaticProps: GetStaticProps<ProductPageData> = async () => {
   };
 };
 
-const ProductPage = ({ products }: ProductPageData) => {
+const Product = ({ products }: ProductData) => {
   const lightbulb = products[0];
 
   const [quantity, setQuantity] = useState(1);
@@ -85,7 +85,9 @@ const ProductPage = ({ products }: ProductPageData) => {
               >
                 -
               </button>
-              <span role="status">{quantity}</span>
+              <span role="status" title="Current quantity">
+                {quantity}
+              </span>
               <button
                 type="button"
                 aria-label="Increase Quantity"
@@ -148,4 +150,4 @@ const ProductPage = ({ products }: ProductPageData) => {
   );
 };
 
-export default ProductPage;
+export default Product;
