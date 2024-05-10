@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import type { GetStaticProps } from "next";
 
 type Product = {
@@ -34,6 +34,18 @@ export const getStaticProps: GetStaticProps<ProductPageData> = async () => {
 const ProductPage = ({ products }: ProductPageData) => {
   const lightbulb = products[0];
 
+  const [quantity, setQuantity] = useState(1);
+
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  const increaseQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+
   return (
     <div>
       <nav>
@@ -66,11 +78,19 @@ const ProductPage = ({ products }: ProductPageData) => {
             <strong>£{lightbulb.price / 100}</strong>
             <h2>Qty</h2>
             <div aria-label="Quantity selector">
-              <button type="button" aria-label="Decrease Quantity">
+              <button
+                type="button"
+                aria-label="Decrease Quantity"
+                onClick={decreaseQuantity}
+              >
                 -
               </button>
-              <span role="status">1</span>
-              <button type="button" aria-label="Increase Quantity">
+              <span role="status">{quantity}</span>
+              <button
+                type="button"
+                aria-label="Increase Quantity"
+                onClick={increaseQuantity}
+              >
                 +
               </button>
             </div>
