@@ -60,15 +60,16 @@ const ProductPage = ({ products }: ProductPageData) => {
             <h1>{lightbulb.name}</h1>
             <p>
               <span>{lightbulb.power}</span>
-              <span> Packet of {lightbulb.quantity}</span>
+              <span> // </span>
+              <span>Packet of {lightbulb.quantity}</span>
             </p>
             <strong>£{lightbulb.price / 100}</strong>
             <h2>Qty</h2>
-            <div>
+            <div aria-label="Quantity selector">
               <button type="button" aria-label="Decrease Quantity">
                 -
               </button>
-              <input type="number" min="1" value="1" aria-label="Quantity" />
+              <span role="status">1</span>
               <button type="button" aria-label="Increase Quantity">
                 +
               </button>
