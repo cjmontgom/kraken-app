@@ -35,6 +35,19 @@ const ProductImage = styled.img`
   border-radius: 25px;
 `;
 
+const ProductHeading = styled.h1`
+  margin: 0.5em 0 0.3em;
+  font-weight: normal;
+  font-size: 30px;
+`;
+
+const ProductImportantDetails = styled.p`
+  margin-top: 0;
+  font-size: 14px;
+  color: ${(props) => props.theme.colours.purpleHaze};
+}
+`;
+
 type ProductData = {
   products: ProductType[];
 };
@@ -88,12 +101,12 @@ const Product = ({ products }: ProductData) => {
             alt={`Image of the following product: ${lightbulb.name}`}
           />
           <div>
-            <h1>{lightbulb.name}</h1>
-            <p>
+            <ProductHeading>{lightbulb.name}</ProductHeading>
+            <ProductImportantDetails>
               <span>{lightbulb.power}</span>
               <span> // </span>
               <span>Packet of {lightbulb.quantity}</span>
-            </p>
+            </ProductImportantDetails>
             <strong>£{lightbulb.price / 100}</strong>
             <h2>Qty</h2>
             <div aria-label="Quantity selector">
