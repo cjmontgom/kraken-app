@@ -1,7 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import type { GetStaticProps } from "next";
 import { fetchProducts } from "../api/graphql";
 import { ProductType } from "../types";
+import { styled } from "styled-components";
+
+const Nav = styled.nav`
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const Logo = styled.img`
+  max-width: 45%;
+`;
+
+const BasketWrapper = styled.div`
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const BasketIcon = styled.img`
+  margin: 0 5px;
+  height: 20px;
+`;
 
 type ProductData = {
   products: ProductType[];
@@ -39,21 +62,15 @@ const Product = ({ products }: ProductData) => {
 
   return (
     <div>
-      <nav>
-        <img
-          style={{ maxWidth: "50%" }}
-          src="octopus-logo.svg"
-          alt="The Octopus logo"
-        />
-        <span role="status" title="Basket items">
-          {basketCount}
-        </span>
-        <img
-          style={{ maxWidth: "5%" }}
-          src="basket.svg"
-          alt="An icon of a basket"
-        />
-      </nav>
+      <Nav>
+        <Logo src="octopus-logo.svg" alt="The Octopus logo" />
+        <BasketWrapper>
+          <span role="status" title="Basket items">
+            {basketCount}
+          </span>
+          <BasketIcon src="basket.svg" alt="An icon of a basket" />
+        </BasketWrapper>
+      </Nav>
       <main>
         {/* product details */}
         <section>
