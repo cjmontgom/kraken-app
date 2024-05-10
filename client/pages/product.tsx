@@ -1,38 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import type { GetStaticProps } from "next";
-
-type Product = {
-  id: number;
-  name: string;
-  power: string;
-  description: string;
-  price: number;
-  quantity: number;
-  brand: string;
-  weight: number;
-  height: number;
-  width: number;
-  length: number;
-  model_code: string;
-  colour: string;
-  img_url: string;
-};
+import { fetchProducts } from "../api/graphql";
+import { ProductType } from "../types";
 
 type ProductData = {
-  products: Product[];
+  products: ProductType[];
 };
 
-export const getStaticProps: GetStaticProps<ProductData> = async () => {
-  const { products } = require("../../server/db");
+export const getServerSideProps: GetStaticProps<ProductData> = async () => {
+  const data = await fetchProducts();
   return {
     props: {
-      products,
+      products: data,
     },
   };
 };
 
 const Product = ({ products }: ProductData) => {
   const lightbulb = products[0];
+  // ToDo: Iterate over all products once this component splits
 
   const [quantity, setQuantity] = useState(1);
   const [basketCount, setBasketCount] = useState(0);
