@@ -39,7 +39,7 @@ test("should be able to increase and decrease product quantity", async () => {
 });
 
 test("should be able to add items to the basket", async () => {
-  const { getByText, getByTitle } = render(<Product />);
+  const { getByText, getByTitle } = render(<Product products={mockProducts} />);
 
   const increaseQuantity = getByText("+");
 
@@ -57,3 +57,6 @@ test("should be able to add items to the basket", async () => {
   const basketItems = getByTitle("Basket items");
   expect(basketItems).toHaveTextContent("4");
 });
+
+// test - should reset the item quantity when basket is updated
+// test - should save the basket state between page refreshes

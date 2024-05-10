@@ -35,6 +35,7 @@ const Product = ({ products }: ProductData) => {
   const lightbulb = products[0];
 
   const [quantity, setQuantity] = useState(1);
+  const [basketCount, setBasketCount] = useState(0);
 
   const decreaseQuantity = () => {
     if (quantity > 1) {
@@ -46,6 +47,10 @@ const Product = ({ products }: ProductData) => {
     setQuantity(quantity + 1);
   };
 
+  const addToBasket = () => {
+    setBasketCount((prevCount) => prevCount + quantity);
+  };
+
   return (
     <div>
       <nav>
@@ -54,6 +59,9 @@ const Product = ({ products }: ProductData) => {
           src="octopus-logo.svg"
           alt="The Octopus logo"
         />
+        <span role="status" title="Basket items">
+          {basketCount}
+        </span>
         <img
           style={{ maxWidth: "5%" }}
           src="basket.svg"
@@ -96,7 +104,9 @@ const Product = ({ products }: ProductData) => {
                 +
               </button>
             </div>
-            <button>Add to Cart</button>
+            <button onClick={addToBasket} title="Add to cart">
+              Add to cart
+            </button>
           </div>
         </section>
 
