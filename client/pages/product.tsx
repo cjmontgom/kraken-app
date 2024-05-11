@@ -30,9 +30,29 @@ const Main = styled.main`
   padding: 16px;
 `;
 
+const ProductDetailsContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: center;
+    max-width: 840px;
+    margin: auto;
+  }
+`;
+
 const ProductImage = styled.img`
   max-width: 100%;
   border-radius: 25px;
+  height: auto;
+
+  @media (min-width: 768px) {
+    max-width: 50%;
+    height: 50vh;
+    object-fit: cover;
+    margin-right: 64px;
+  }
 `;
 
 const ProductHeading = styled.h1`
@@ -100,6 +120,13 @@ const AddToCartButton = styled(BaseButton)`
   height: 56px;
 `;
 
+const AdditionalProductDetailsContainer = styled.section`
+  @media (min-width: 768px) {
+    max-width: 840px;
+    margin: auto;
+  }
+`;
+
 const AdditionalDetailsHeader = styled.h2`
   font-weight: 500;
   font-size: 20px;
@@ -135,8 +162,12 @@ const SpecTableBody = styled.tbody`
 
 const Footer = styled.footer`
   background: ${(props) => props.theme.colours.hemocyanin};
-  padding: 16px 16px 0;
+  padding: 16px;
   line-height: 1.5;
+
+  @media (min-width: 768px) {
+    text-align: center;
+  }
 `;
 
 const FooterText = styled.small`
@@ -193,8 +224,7 @@ const Product = ({ products }: ProductData) => {
         </BasketWrapper>
       </Nav>
       <Main>
-        {/* product details */}
-        <section>
+        <ProductDetailsContainer>
           <ProductImage
             src={lightbulb.img_url}
             alt={`Image of the following product: ${lightbulb.name}`}
@@ -235,10 +265,9 @@ const Product = ({ products }: ProductData) => {
               Add to cart
             </AddToCartButton>
           </div>
-        </section>
+        </ProductDetailsContainer>
 
-        {/* additional product details */}
-        <section>
+        <AdditionalProductDetailsContainer>
           <DescriptionWrapper>
             <AdditionalDetailsHeader>Description</AdditionalDetailsHeader>
             <Description>{lightbulb.description}</Description>
@@ -278,7 +307,7 @@ const Product = ({ products }: ProductData) => {
               </SpecTableBody>
             </SpecTable>
           </div>
-        </section>
+        </AdditionalProductDetailsContainer>
       </Main>
 
       <Footer>
