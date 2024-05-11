@@ -45,8 +45,6 @@ const ProductImportantDetails = styled.p`
   margin-top: 0;
   font-size: 14px;
   color: ${(props) => props.theme.colours.purpleHaze};
-  
-}
 `;
 
 const PriceAndQuantityWrapper = styled.div`
@@ -100,6 +98,53 @@ const QuantityButton = styled(BaseButton)`
 const AddToCartButton = styled(BaseButton)`
   width: 100%;
   height: 56px;
+`;
+
+const AdditionalDetailsHeader = styled.h2`
+  font-weight: 500;
+  font-size: 20px;
+  text-align: left;
+`;
+
+// ToDo: use variables for padding calculation
+const DescriptionWrapper = styled.div`
+  background: ${(props) => props.theme.colours.hemocyanin};
+  width: calc(100% + 32px);
+  margin-left: -16px;
+  margin-right: -16px;
+  padding: 16px;
+  box-sizing: border-box;
+  margin-top: 16px;
+`;
+
+const Description = styled.p`
+  line-height: 1.6;
+  font-weight: 200;
+  font-size: 16px;
+`;
+
+const SpecTable = styled.table`
+  width: 100%;
+  margin-top: 16px;
+  line-height: 2;
+`;
+
+const SpecTableBody = styled.tbody`
+  font-weight: 200;
+`;
+
+const Footer = styled.footer`
+  background: ${(props) => props.theme.colours.hemocyanin};
+  padding: 16px 16px 0;
+  line-height: 1.5;
+`;
+
+const FooterText = styled.small`
+  color: ${(props) => props.theme.colours.purpleHaze};
+`;
+
+const FooterAddress = styled.address`
+  font-style: normal;
 `;
 
 type ProductData = {
@@ -194,50 +239,58 @@ const Product = ({ products }: ProductData) => {
 
         {/* additional product details */}
         <section>
+          <DescriptionWrapper>
+            <AdditionalDetailsHeader>Description</AdditionalDetailsHeader>
+            <Description>{lightbulb.description}</Description>
+          </DescriptionWrapper>
           <div>
-            <h2>Description</h2>
-            <p>{lightbulb.description}</p>
-          </div>
-          <div>
-            <h2>Specifications</h2>
-            <dl>
-              <div>
-                <dt>Brand</dt>
-                <dd>{lightbulb.brand}</dd>
-              </div>
-              <div>
-                <dt>Item weight (g)</dt>
-                <dd>{lightbulb.weight}</dd>
-              </div>
-              <div>
-                <dt>Dimensions (cm)</dt>
-                <dd>
-                  {lightbulb.height} x {lightbulb.width} x {lightbulb.length}
-                </dd>
-              </div>
-              <div>
-                <dt>Item Model number</dt>
-                <dd>{lightbulb.model_code}</dd>
-              </div>
-              <div>
-                <dt>Colour</dt>
-                <dd>{lightbulb.colour}</dd>
-              </div>
-            </dl>
+            <SpecTable>
+              <thead>
+                <tr>
+                  <AdditionalDetailsHeader as={"th"} colSpan={2}>
+                    Specifications
+                  </AdditionalDetailsHeader>
+                </tr>
+              </thead>
+              <SpecTableBody>
+                <tr>
+                  <td>Brand</td>
+                  <td>{lightbulb.brand}</td>
+                </tr>
+                <tr>
+                  <td>Item weight (g)</td>
+                  <td>{lightbulb.weight}</td>
+                </tr>
+                <tr>
+                  <td>Dimensions (cm)</td>
+                  <td>
+                    {lightbulb.height} x {lightbulb.width} x {lightbulb.length}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Item Model number</td>
+                  <td>{lightbulb.model_code}</td>
+                </tr>
+                <tr>
+                  <td>Colour</td>
+                  <td>{lightbulb.colour}</td>
+                </tr>
+              </SpecTableBody>
+            </SpecTable>
           </div>
         </section>
       </Main>
 
-      <footer>
-        <small>
+      <Footer>
+        <FooterText>
           Octopus Energy Ltd is a company registered in England and Wales.
           Registered number: 09263424.
-          <address>
+          <FooterAddress>
             Registered office: 33 Holborn, London, ECIN 2HT. Trading office:
             20-24 Broadwick Street, London, WIF 8HT
-          </address>
-        </small>
-      </footer>
+          </FooterAddress>
+        </FooterText>
+      </Footer>
     </div>
   );
 };
